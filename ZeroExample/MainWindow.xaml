@@ -1,0 +1,147 @@
+﻿<Fluent:RibbonWindow x:Class="ZeroExample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZeroExample"
+        xmlns:vm="clr-namespace:ViewModels;assembly=ViewModels"
+        xmlns:views="clr-namespace:ZeroExample.Views"             
+        xmlns:Fluent="urn:fluent-ribbon"
+        mc:Ignorable="d"
+        Icon="/icon.ico"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="{Binding Title}" Height="400" Width="800">
+    
+<Fluent:RibbonWindow.DataContext>
+        <vm:MainViewModel />
+</Fluent:RibbonWindow.DataContext>
+<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Fluent:Ribbon Grid.Row="0" CanMinimize="False">
+
+            <!--Tabs-->
+            <Fluent:RibbonTabItem Header="Home">
+                <Fluent:RibbonGroupBox Header="XML">
+                    <Fluent:Button Header="Open" Command="{Binding OpenFileCommand}"
+                                Icon="Images/open-file.png"
+                                LargeIcon="Images/open-file.png" />
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Data">
+                    <Fluent:Button Header="Save As" 
+                                   Command="{Binding SaveCommand}"
+                                Icon="Images/save-file.png"
+                                LargeIcon="Images/save-file.png" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
+            <Fluent:RibbonTabItem Header="Additional Features">
+                <Fluent:RibbonGroupBox Header="Data">
+                    <Fluent:Button Header="Generate"
+                                   Command="{Binding GenerateCommand}"
+                                Icon="Images/generate.png"
+                                LargeIcon="Images/generate.png" />
+                    <Fluent:Button Header="Generate with Nulls"
+                                   Command="{Binding GenerateWithNullsCommand}"
+                                Icon="Images/generate-with-errors.png"
+                                LargeIcon="Images/generate-with-errors.png" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            
+        </Fluent:Ribbon>
+
+        <Grid Grid.Row="1" Margin="5">
+            <TabControl SelectedIndex="{Binding SelectedTabIndex}">
+                <TabItem Header="Loaded XML" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+                        <DockPanel Background="Transparent" Margin="5">
+                            <StackPanel DockPanel.Dock="Top" Margin="5" Orientation="Horizontal">
+                                <TextBlock Text="Name" Foreground="AntiqueWhite" FontSize="14" FontWeight="Regular" />
+                                <TextBlock Margin="5,0,0,0" Text="{Binding File.FileName}"/>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Top" Margin="5" Orientation="Horizontal">
+                                <TextBlock Text="Path" Foreground="AntiqueWhite" FontSize="14" FontWeight="Regular"/>
+                                <TextBlock Margin="5,0,0,0" Text="{Binding File.FilePath}" FontSize="14" FontWeight="Regular" />
+                            </StackPanel>
+                        </DockPanel>
+                        <GridSplitter Grid.Row="1" Height="2" VerticalAlignment="Center" Background="Gray" />
+                        <Grid Grid.Row="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Text="Content validation" Foreground="AntiqueWhite" FontSize="14" FontWeight="Bold" Margin="5"/>
+                            <TextBlock Grid.Row="1" Text="{Binding Val.Name}" Foreground="AntiqueWhite" FontSize="14" FontWeight="Regular" Margin="5"/>
+                            <TextBlock Grid.Row="2" Text="{Binding Val.ResultDescrition}" Foreground="AntiqueWhite" FontSize="14" FontWeight="Regular" Margin="5"/>
+                            <TextBlock Grid.Row="3" Visibility="{Binding Val.Result, Converter={StaticResource ValidationResultConverter}}" Text="{Binding Val.Result}" Foreground="AntiqueWhite" FontSize="14" FontWeight="Regular" Margin="5"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Data" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Count" Margin="0,0,5,0"/>
+                            <TextBlock Text="{Binding TotalCars}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal">
+                            <TextBlock Width="100" TextAlignment="Center" Text="Model" Margin="0,0,5,0"/>
+                            <TextBlock Width="130" TextAlignment="Center" Text="Sale Date" Margin="0,0,5,0"/>
+                            <TextBlock Width="100" TextAlignment="Center" Text="Price" Margin="0,0,5,0"/>
+                            <TextBlock Width="50"  TextAlignment="Center" Text="VAT" Margin="0,0,5,0"/>
+                            <TextBlock Width="100" TextAlignment="Center" Text="Price with VAT" Margin="0,0,5,0"/>
+                        </StackPanel>
+                        <ListBox Grid.Row="2" ItemsSource="{Binding Cars}" VirtualizingPanel.IsVirtualizing="True"
+                            VirtualizingPanel.VirtualizationMode="Recycling"
+                            ScrollViewer.CanContentScroll="True">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Margin="1">
+                                        <TextBlock Width="100" Padding="2" TextAlignment="Center" FontSize="10" FontWeight="Regular" Text="{Binding Model}" Foreground="{Binding SaleDate, Converter={StaticResource WeekendConverter}}"/>
+                                        <TextBlock Width="130" Padding="2" TextAlignment="Center"  FontSize="10" FontWeight="Regular" Text="{Binding SaleDate, Converter={StaticResource DateConverter}}" Foreground="{Binding SaleDate, Converter={StaticResource WeekendConverter}}" />
+                                        <TextBlock Width="100" Padding="2" TextAlignment="Right" FontSize="10" FontWeight="Regular" Text="{Binding Price, Converter={StaticResource CurrencyConverter}}" Foreground="{Binding SaleDate, Converter={StaticResource WeekendConverter}}"/>
+                                        <TextBlock Width="50"  Padding="2" TextAlignment="Right" FontSize="10" FontWeight="Regular" Text="{Binding Vat, Converter={StaticResource VatConverter}}" Foreground="{Binding SaleDate, Converter={StaticResource WeekendConverter}}"/>
+                                        <TextBlock Width="100" Padding="2" TextAlignment="Right" FontSize="10" FontWeight="Regular" Text="{Binding PriceWithVat, Converter={StaticResource CurrencyConverter}}" Foreground="{Binding SaleDate, Converter={StaticResource WeekendConverter}}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Sumarization" >
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                        <WrapPanel Height="4400" >
+                            <views:SimpleSumView DataContext="{Binding WeekendSums}" />
+                            <views:SimpleSumView DataContext="{Binding NonWeekendSums}" />
+                            <views:SimpleSumView DataContext="{Binding Sums}" />
+                            <views:SimpleSumView DataContext="{Binding SumsSoldDuringEaster}" />
+                            <views:SimpleSumView DataContext="{Binding VatSums}" />
+                            <views:SimpleSumView DataContext="{Binding SumsDayOfWeek}" />
+                            <views:SimpleSumView DataContext="{Binding SumsYear}" />
+                        </WrapPanel>
+                    </ScrollViewer>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <StatusBar Margin="5" Padding="2" Grid.Row="2" Height="40" Background="Transparent">
+            <TextBlock Text="{Binding StatusBar}" />
+            <ProgressBar Width="200" Height="2" Orientation="Horizontal" BorderThickness="0" Maximum="{Binding ProgressBarMax}" Value="{Binding ProgressBarValue}"/>
+        </StatusBar>
+    </Grid>
+</Fluent:RibbonWindow>
