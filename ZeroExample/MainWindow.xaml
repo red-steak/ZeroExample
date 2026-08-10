@@ -122,10 +122,16 @@
                         </ListBox>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Sumarization" >
+                <TabItem Header="BASE Sumarization" >
+                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                        <WrapPanel Height="2400" >
+                            <views:SimpleSumView DataContext="{Binding WeekendSums}" />
+                        </WrapPanel>
+                    </ScrollViewer>
+                </TabItem>
+                <TabItem Header="Additional Sumarization" >
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
                         <WrapPanel Height="4400" >
-                            <views:SimpleSumView DataContext="{Binding WeekendSums}" />
                             <views:SimpleSumView DataContext="{Binding NonWeekendSums}" />
                             <views:SimpleSumView DataContext="{Binding Sums}" />
                             <views:SimpleSumView DataContext="{Binding SumsSoldDuringEaster}" />
