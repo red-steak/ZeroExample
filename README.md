@@ -6,6 +6,10 @@ An Example of the WPF application - grouping XML data
 
 Models      => class Car
 
-ViewModels  => viewmodels (UI logic) references Models
+Interfaces  => interfaces for DI
 
-ZeroExample => WPF application references ViewModels  
+Services    => services for DI used in the app; references Models, Interfaces
+
+ViewModels  => viewmodels (UI logic); references Models, Interfaces
+
+ZeroExample => WPF application; references ViewModels, Interfaces, Services
