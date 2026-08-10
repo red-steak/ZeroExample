@@ -4,19 +4,26 @@ An Example of the WPF application - grouping XML data
 
 Used RectiveUI -> https://www.reactiveui.net/
 
-**Projects**
+==================================================
 
-Models      => class Car
+# Projects
 
-Interfaces  => interfaces for DI
+==================================================
 
-Services    => services for DI used in the app; references Models, Interfaces
+**Models**      => class Car
 
-ViewModels  => viewmodels (UI logic); references Models, Interfaces
+**Interfaces**  => interfaces for DI
 
-ZeroExample => WPF application; references ViewModels, Interfaces, Services
+**Services**    => services for DI used in the app; references Models, Interfaces
 
+**ViewModels**  => viewmodels (UI logic); references Models, Interfaces
 
-ZeroExample-SETUP.exe	-> setup for the WPF application - https://github.com/red-steak/ZeroExample/blob/master/ZeroExample-SETUP.exe
+**ZeroExample**	=> WPF application; references ViewModels, Interfaces, Services
 
-SETUP-SCRIPT.iss		-> script for Inno Setup Compiler
+==================================================
+
+# Setup - installation
+
+**ZeroExample-SETUP.exe**	-> setup for the WPF application - https://github.com/red-steak/ZeroExample/blob/master/ZeroExample-SETUP.exe
+
+**SETUP-SCRIPT.iss**		-> script for Inno Setup Compiler

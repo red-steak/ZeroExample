@@ -22,16 +22,22 @@ namespace ZeroExample
             CultureInfo.CurrentCulture = new CultureInfo("cs-CZ");
             CultureInfo.CurrentUICulture = new CultureInfo("cs-CZ");
 
+
             var app = RxAppBuilder.CreateReactiveUIBuilder()
                 .WithWpf()
                 .WithViewsFromAssembly(Assembly.GetExecutingAssembly())
                 .WithRegistration(locator =>
                 {
-                    locator.RegisterLazySingleton<IReadService>(() => new ReadFileService());
-                    locator.RegisterLazySingleton<ILoadService>(() => new LoadService());
+                    var readService = new ReadFileService();
+                    var loadService = new LoadService();
 
-                    locator.RegisterLazySingleton<MainViewModel>(() => new MainViewModel(Locator.Current.GetService<IReadService>()!, Locator.Current.GetService<ILoadService>()!));
-                    locator.RegisterLazySingleton<MainWindow>(() => new MainWindow(Locator.Current.GetService<MainViewModel>()!));
+                    locator.RegisterLazySingleton<IReadService>(() => readService);
+                    locator.RegisterLazySingleton<ILoadService>(() => loadService);
+
+                    var vm = new MainViewModel(readService, loadService);
+
+                    locator.RegisterLazySingleton(() => vm);
+                    locator.RegisterLazySingleton(() => new MainWindow(vm));
                 })
                 .BuildApp();
 
