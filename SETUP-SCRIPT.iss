@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "Zero Example"
-#define MyAppVersion "0.0.0"
+#define MyAppVersion "0.0.1"
 #define MyAppPublisher "Řízek Jan"
 #define MyAppURL "https://github.com/red-steak/ZeroExample"
 #define MyAppExeName "ZeroExample.exe"
@@ -69,7 +69,12 @@ Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debu
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Microsoft.Extensions.Options.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Microsoft.Extensions.Primitives.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Microsoft.Xaml.Behaviors.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Interfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Services.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Models.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ViewModels.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Microsoft.WindowsAPICodePack.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Microsoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ReactiveUI.Core.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ReactiveUI.Disposables.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ReactiveUI.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -82,7 +87,6 @@ Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debu
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Splat.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Splat.Logging.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\Splat.Microsoft.Extensions.DependencyInjection.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ViewModels.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ZeroExample.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ZeroExample.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\hp\Documents\EXAMPLE TESCO SW\ZeroExample\ZeroExample\bin\Debug\net10.0-windows\ZeroExample.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
