@@ -3,7 +3,7 @@
 ; Non-commercial use only
 
 #define MyAppName "Zero Example"
-#define MyAppVersion "0.0.1"
+#define MyAppVersion "0.0.2"
 #define MyAppPublisher "Řízek Jan"
 #define MyAppURL "https://github.com/red-steak/ZeroExample"
 #define MyAppExeName "ZeroExample.exe"

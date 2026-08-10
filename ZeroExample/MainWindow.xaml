@@ -124,7 +124,7 @@
                 </TabItem>
                 <TabItem Header="BASE Sumarization" >
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
-                        <WrapPanel Height="2400" >
+                        <WrapPanel Height="4400" >
                             <views:SimpleSumView DataContext="{Binding WeekendSums}" />
                         </WrapPanel>
                     </ScrollViewer>
