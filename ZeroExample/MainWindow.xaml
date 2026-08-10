@@ -13,10 +13,7 @@
         WindowState="Maximized"
         Title="{Binding Title}" Height="400" Width="800">
     
-<Fluent:RibbonWindow.DataContext>
-        <vm:MainViewModel />
-</Fluent:RibbonWindow.DataContext>
-<Grid>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />

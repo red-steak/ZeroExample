@@ -13,9 +13,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="WindowsAPICodePack-Shell" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
