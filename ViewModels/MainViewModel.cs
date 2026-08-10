@@ -62,7 +62,6 @@ namespace ViewModels
             CommonOpenFileDialog dialog = new()
             {
                 IsFolderPicker = false,
-                DefaultExtension = "xml",                
                 DefaultDirectory = $@"{Application.Current.StartupUri}\Data",
                 Multiselect = false,
                 Title = "Select an XML file"
@@ -102,13 +101,13 @@ namespace ViewModels
         [ReactiveCommand]
         public async Task Generate()
         {
-            await GenerateData(100000);
+            await Task.Run(async () => await GenerateData(100000));
         }
 
         [ReactiveCommand]
         public async Task GenerateWithNulls()
         {
-            await GenerateData(100000, true);
+            await Task.Run(async () => await GenerateData(100000, true));
         }
 
         #endregion REACTIVE COMMANDS
@@ -119,7 +118,7 @@ namespace ViewModels
         {
             string filePath = fileName;
 
-            var serviceResult = await _readService.ReadAsync(filePath);
+            var serviceResult = await Task.Run(async () => await _readService.ReadAsync(filePath));
 
             if (!serviceResult.IsSuccess)
             {
@@ -128,7 +127,7 @@ namespace ViewModels
             }
             else
             {
-                var parsingResult = await _loadService.LoadAsync(serviceResult.Response);
+                var parsingResult = await Task.Run(async () => await _loadService.LoadAsync(serviceResult.Response));
 
                 if (!parsingResult.Result)
                 {
@@ -166,15 +165,15 @@ namespace ViewModels
             {
                 Val.Name = context;
                 Val.Result = isValid ? ValidationResult.Valid : ValidationResult.Invalid;
-                if (string.IsNullOrEmpty(errorMessage))
+                if (string.IsNullOrEmpty(errorMessage) && !isValid)
                 {
-                    Val.ResultDescrition = isValid ? "Success!" : "Error!";
-                    StatusBar = _defaultTitle.Replace("{0}", isValid ? "Success!" : "Error!");
+                    Val.ResultDescrition = "Error!";
+                    StatusBar = _defaultTitle.Replace("{0}", "Error!");
                 }
                 else
                 {
-                    Val.ResultDescrition = _defaultTitle.Replace("{0}", $"Error: {errorMessage}");
-                    StatusBar = _defaultTitle.Replace("{0}", $"Error: {errorMessage}");
+                    Val.ResultDescrition = isValid ? "Success!" : $"Error: {errorMessage}";
+                    StatusBar = _defaultTitle.Replace("{0}", isValid ? "Success!" : $"Error: {errorMessage}");
                 }
             }));
         }
@@ -321,6 +320,7 @@ namespace ViewModels
                 await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                 {
                     Cars.Add(carVM);
+                    ProgressBarValue += 1;
                 }));
             }
 
